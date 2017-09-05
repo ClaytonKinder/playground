@@ -1,0 +1,5 @@
+.playground.guess {
+  &.current .wrapper {
+    animation: genericFadeInAnimation 0.5s $cubic 0.1s 1 forwards;
+  }
+}

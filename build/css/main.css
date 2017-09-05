@@ -1,0 +1,129 @@
+@keyframes introTitleAnimation {
+  from {
+    opacity: 0; }
+  to {
+    transform: translateY(0);
+    opacity: 1; } }
+
+@keyframes introImageAnimation {
+  from {
+    transform: scale(0);
+    opacity: 0; }
+  to {
+    transform: scale(1);
+    opacity: 1; } }
+
+@keyframes genericFadeInAnimation {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+html {
+  font-family: sans-serif;
+  color: white; }
+
+body {
+  height: 100vh;
+  overflow: hidden; }
+
+.playground {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  transition: all 0.5s;
+  position: fixed;
+  padding: 50px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateY(100%); }
+  .playground.current {
+    transform: translateY(0) translateX(0) !important; }
+  .playground.next-scrolling {
+    transform: translateY(0) translateX(0) !important; }
+  .playground.up {
+    transition: all 0.01s; }
+  .playground:first-of-type {
+    background-color: #CF4647;
+    position: fixed;
+    z-index: 1;
+    transform: translateY(0); }
+  .playground:nth-of-type(2) {
+    background-color: #3A3E64;
+    z-index: 2; }
+  .playground:nth-of-type(3) {
+    background-color: #B09943;
+    z-index: 3; }
+  .playground:nth-of-type(4) {
+    background-color: pink;
+    z-index: 4; }
+  .playground:nth-of-type(5) {
+    background-color: salmon;
+    z-index: 5; }
+  .playground:nth-of-type(2n+3) {
+    transform: translateX(100%); }
+  .playground .wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    height: 100%;
+    opacity: 0; }
+    .playground .wrapper h2 {
+      font-size: 72px;
+      text-align: center;
+      margin: 0; }
+
+.playground.intro {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; }
+  .playground.intro.current div h1 span:first-of-type {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(2) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.2s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(3) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.3s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(4) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.4s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(5) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.5s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(6) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.5s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(7) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.4s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(8) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.3s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(9) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.2s 1 forwards; }
+  .playground.intro.current div h1 span:nth-of-type(10) {
+    animation: introTitleAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1 forwards; }
+  .playground.intro.current div img {
+    animation: introImageAnimation 1s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0s 1;
+    transform: scale(1);
+    opacity: 1; }
+  .playground.intro div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 100px;
+    transition: all 0.5s; }
+    .playground.intro div h1 span {
+      opacity: 0;
+      transform: translateY(25%);
+      display: inline-block; }
+      .playground.intro div h1 span:nth-of-type(even) {
+        transform: translateY(-25%); }
+    .playground.intro div img {
+      opacity: 0; }
+  .playground.intro h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif; }
+
+.playground.guess.current .wrapper {
+  animation: genericFadeInAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1 forwards; }

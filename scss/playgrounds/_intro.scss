@@ -1,0 +1,69 @@
+.playground.intro {
+  @include flexbox(row, center, center);
+
+  &.current div h1 span {
+    &:first-of-type {
+      animation: introTitleAnimation 0.5s $cubic 0.1s 1 forwards;
+    }
+    &:nth-of-type(2) {
+      animation: introTitleAnimation 0.5s $cubic 0.2s 1 forwards;
+    }
+    &:nth-of-type(3) {
+      animation: introTitleAnimation 0.5s $cubic 0.3s 1 forwards;
+    }
+    &:nth-of-type(4) {
+      animation: introTitleAnimation 0.5s $cubic 0.4s 1 forwards;
+    }
+    &:nth-of-type(5) {
+      animation: introTitleAnimation 0.5s $cubic 0.5s 1 forwards;
+    }
+    &:nth-of-type(6) {
+      animation: introTitleAnimation 0.5s $cubic 0.5s 1 forwards;
+    }
+    &:nth-of-type(7) {
+      animation: introTitleAnimation 0.5s $cubic 0.4s 1 forwards;
+    }
+    &:nth-of-type(8) {
+      animation: introTitleAnimation 0.5s $cubic 0.3s 1 forwards;
+    }
+    &:nth-of-type(9) {
+      animation: introTitleAnimation 0.5s $cubic 0.2s 1 forwards;
+    }
+    &:nth-of-type(10) {
+      animation: introTitleAnimation 0.5s $cubic 0.1s 1 forwards;
+    }
+  }
+
+  &.current div img {
+    animation: introImageAnimation 1s cubic-bezier(.81,.12,.63,1.36) 0s 1;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  div {
+    @include flexbox(column, center, center);
+    font-size: 100px;
+    transition: all 0.5s;
+
+    h1 {
+      span {
+        opacity: 0;
+        transform: translateY(25%);
+        display: inline-block;
+
+        &:nth-of-type(even) {
+          transform: translateY(-25%);
+        }
+      }
+    }
+
+    img {
+      opacity: 0;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
