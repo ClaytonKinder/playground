@@ -1,1 +1,11 @@
 $cubic: cubic-bezier(.81,.12,.63,1.36);
+
+// COLORS
+$success: #5cb85c;
+$failure: #d9534f;
+
+$intro: #CF4647;
+
+$guess: #3A3E64;
+$guessLight: lighten($guess, 10%);
+$guessDark: darken($guess, 10%);

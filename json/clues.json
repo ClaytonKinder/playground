@@ -1,0 +1,16 @@
+{
+  "entries": [
+        {
+          "key": "beginsWith",
+          "sentence": "The answer begins with "
+        },
+        {
+          "key": "endsWith",
+          "sentence": "The answer ends with "
+        },
+        {
+          "key": "length",
+          "sentence": "The answer has a length of "
+        }
+    ]
+}

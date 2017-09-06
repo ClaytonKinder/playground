@@ -25,14 +25,14 @@
   }
 
   &:first-of-type {
-    background-color: #CF4647;
+    background-color: $intro;
     position: fixed;
     z-index: 1;
     transform: translateY(0);
   }
 
   &:nth-of-type(2) {
-    background-color: #3A3E64;
+    background-color: $guess;
     z-index: 2;
   }
 
@@ -64,7 +64,8 @@
     h2 {
       font-size: 72px;
       text-align: center;
-      margin: 0;
+      margin: 0 0 25px;
+      font-weight: lighter;
     }
   }
 }

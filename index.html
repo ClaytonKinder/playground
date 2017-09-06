@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="node_modules/normalize.css/normalize.css">
   <link rel="stylesheet" type="text/css" href="./build/css/main.css">
   <title>Playground</title>
@@ -18,7 +18,63 @@
   </div>
   <div data-playground="guess" class="playground guess">
     <div class="wrapper">
-      <h2>Guess</h2>
+      <div class="guess-header">
+        <div class="best-win-streak">
+          <div class="label">BEST</div>
+          <div class="value"></div>
+        </div>
+        <h2>Guess</h2>
+        <div class="current-win-streak">
+          <div class="label">CURRENT</div>
+          <div class="value"></div>
+        </div>
+      </div>
+      <div class="guess-board">
+        <div class="category">
+          <h3 class="category-title">CATEGORY</h3>
+          <div class="category-text"></div>
+        </div>
+        <div class="guesses">
+          <div data-guess="1" class="guess guess1">
+            <div class="guess-circle">
+              <div class="guess-correct">✔</div>
+              <div class="guess-incorrect">X</div>
+            </div>
+          </div>
+          <div data-guess="2" class="guess guess2">
+            <div class="guess-circle">
+              <div class="guess-correct">✔</div>
+              <div class="guess-incorrect">X</div>
+            </div>
+          </div>
+          <div data-guess="3" class="guess guess3">
+            <div class="guess-circle">
+              <div class="guess-correct">✔</div>
+              <div class="guess-incorrect">X</div>
+            </div>
+          </div>
+        </div>
+        <div class="clues">
+          <h3 class="clue-title">CLUES</h3>
+          <div class="clue-text"></div>
+        </div>
+        <form name="guess-form" class="guess-form">
+          <input type="text" autofocus />
+          <button type="submit">GO</button>
+        </form>
+        <div class="win hide">
+          <h3>VICTORY!</h3>
+          <div>
+            Press <strong>ENTER</strong> to play again
+          </div>
+        </div>
+        <div class="lose hide">
+          <h3>DEFEAT!</h3>
+          <div>
+            Press <strong>ENTER</strong> to play again
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="playground">

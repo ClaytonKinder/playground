@@ -19,13 +19,28 @@
   to {
     opacity: 1; } }
 
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05); }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); } }
+
 html {
   font-family: sans-serif;
-  color: white; }
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
 
 body {
   height: 100vh;
   overflow: hidden; }
+
+* {
+  box-sizing: border-box; }
 
 .playground {
   height: 100vh;
@@ -73,7 +88,8 @@ body {
     .playground .wrapper h2 {
       font-size: 72px;
       text-align: center;
-      margin: 0; }
+      margin: 0 0 25px;
+      font-weight: lighter; }
 
 .playground.intro {
   display: flex;
@@ -125,5 +141,176 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif; }
 
-.playground.guess.current .wrapper {
-  animation: genericFadeInAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1 forwards; }
+.playground.guess {
+  padding: 0;
+  background-image: radial-gradient(circle at 100% 150%, #3c4067 24%, #414671 25%, #414671 28%, #3c4067 29%, #3c4067 36%, #414671 36%, #414671 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, #3c4067 24%, #414671 25%, #414671 28%, #3c4067 29%, #3c4067 36%, #414671 36%, #414671 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, #414671 10%, #3c4067 11%, #3c4067 23%, #414671 24%, #414671 30%, #3c4067 31%, #3c4067 43%, #414671 44%, #414671 50%, #3c4067 51%, #3c4067 63%, #414671 64%, #414671 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, #414671 5%, #3c4067 6%, #3c4067 15%, #414671 16%, #414671 20%, #3c4067 21%, #3c4067 30%, #414671 31%, #414671 35%, #3c4067 36%, #3c4067 45%, #414671 46%, #414671 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, #414671 5%, #3c4067 6%, #3c4067 15%, #414671 16%, #414671 20%, #3c4067 21%, #3c4067 30%, #414671 31%, #414671 35%, #3c4067 36%, #3c4067 45%, #414671 46%, #414671 49%, transparent 50%, transparent);
+  background-size: 100px 50px; }
+  .playground.guess.current .wrapper {
+    animation: genericFadeInAnimation 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1 forwards; }
+  .playground.guess .wrapper {
+    background-color: #3A3E64;
+    padding: 50px; }
+  .playground.guess .guess-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; }
+    .playground.guess .guess-header .best-win-streak,
+    .playground.guess .guess-header .current-win-streak {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; }
+      .playground.guess .guess-header .best-win-streak .label,
+      .playground.guess .guess-header .best-win-streak .value,
+      .playground.guess .guess-header .current-win-streak .label,
+      .playground.guess .guess-header .current-win-streak .value {
+        margin-bottom: 10px; }
+      .playground.guess .guess-header .best-win-streak .value,
+      .playground.guess .guess-header .current-win-streak .value {
+        height: 75px;
+        width: 75px;
+        background: #272a44;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 48px; }
+    .playground.guess .guess-header h2 {
+      flex: 2; }
+  .playground.guess .guess-board {
+    position: relative;
+    border: 10px solid white;
+    height: 70%;
+    padding: 75px 25px; }
+    .playground.guess .guess-board .category {
+      height: 100px;
+      width: 100%;
+      border: 5px solid white;
+      position: relative; }
+      .playground.guess .guess-board .category .category-title {
+        text-align: center;
+        font-weight: lighter;
+        position: absolute;
+        top: -12.5px;
+        left: 25px;
+        width: 125px;
+        margin: 0;
+        background-color: #3A3E64; }
+      .playground.guess .guess-board .category .category-text {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        text-transform: uppercase;
+        font-size: 64px; }
+        .playground.guess .guess-board .category .category-text.chosen {
+          animation: pulse 0.5s cubic-bezier(0.81, 0.12, 0.63, 1.36) 0.1s 1; }
+    .playground.guess .guess-board .guesses {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap; }
+      .playground.guess .guess-board .guesses .guess.correct .guess-circle .guess-correct {
+        display: block; }
+      .playground.guess .guess-board .guesses .guess.incorrect .guess-circle .guess-incorrect {
+        display: block; }
+      .playground.guess .guess-board .guesses .guess .guess-circle {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: #272a44;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; }
+        .playground.guess .guess-board .guesses .guess .guess-circle .guess-correct {
+          display: none;
+          font-size: 120px;
+          color: #5cb85c; }
+        .playground.guess .guess-board .guesses .guess .guess-circle .guess-incorrect {
+          display: none;
+          font-size: 120px;
+          color: #d9534f; }
+    .playground.guess .guess-board .clues {
+      margin-top: 50px;
+      height: 100px;
+      width: 100%;
+      border: 5px solid white;
+      position: relative; }
+      .playground.guess .guess-board .clues .clue-title {
+        text-align: center;
+        font-weight: lighter;
+        position: absolute;
+        top: -12.5px;
+        left: 25px;
+        width: 90px;
+        margin: 0;
+        background-color: #3A3E64; }
+      .playground.guess .guess-board .clues .clue-text {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 22px; }
+    .playground.guess .guess-board .guess-form {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; }
+      .playground.guess .guess-board .guess-form.hide {
+        display: none; }
+      .playground.guess .guess-board .guess-form input, .playground.guess .guess-board .guess-form button {
+        height: 100px;
+        border: 0;
+        color: white; }
+        .playground.guess .guess-board .guess-form input:focus, .playground.guess .guess-board .guess-form button:focus {
+          outline: 0; }
+      .playground.guess .guess-board .guess-form input {
+        flex: 4;
+        text-align: center;
+        background-color: #272a44;
+        font-size: 40px; }
+      .playground.guess .guess-board .guess-form button {
+        flex: 1;
+        background-color: #CF4647;
+        font-size: 54px;
+        cursor: pointer; }
+    .playground.guess .guess-board .win,
+    .playground.guess .guess-board .lose {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; }
+      .playground.guess .guess-board .win.hide,
+      .playground.guess .guess-board .lose.hide {
+        display: none; }
+      .playground.guess .guess-board .win h3,
+      .playground.guess .guess-board .lose h3 {
+        font-size: 64px; }
+    .playground.guess .guess-board .win {
+      background-color: #5cb85c; }
+    .playground.guess .guess-board .lose {
+      background-color: #d9534f; }

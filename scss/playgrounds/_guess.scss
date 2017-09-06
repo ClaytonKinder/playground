@@ -1,5 +1,215 @@
+$guessTest1: lighten($guess, 4%);
+$guessTest2: lighten($guess, 1%);
+
 .playground.guess {
+  padding: 0;
+  background-image:
+  radial-gradient(circle at 100% 150%, $guessTest2 24%, $guessTest1 25%, $guessTest1 28%, $guessTest2 29%, $guessTest2 36%, $guessTest1 36%, $guessTest1 40%, transparent 40%, transparent),
+  radial-gradient(circle at 0    150%, $guessTest2 24%, $guessTest1 25%, $guessTest1 28%, $guessTest2 29%, $guessTest2 36%, $guessTest1 36%, $guessTest1 40%, transparent 40%, transparent),
+  radial-gradient(circle at 50%  100%, $guessTest1 10%, $guessTest2 11%, $guessTest2 23%, $guessTest1 24%, $guessTest1 30%, $guessTest2 31%, $guessTest2 43%, $guessTest1 44%, $guessTest1 50%, $guessTest2 51%, $guessTest2 63%, $guessTest1 64%, $guessTest1 71%, transparent 71%, transparent),
+  radial-gradient(circle at 100% 50%, $guessTest1 5%, $guessTest2 6%, $guessTest2 15%, $guessTest1 16%, $guessTest1 20%, $guessTest2 21%, $guessTest2 30%, $guessTest1 31%, $guessTest1 35%, $guessTest2 36%, $guessTest2 45%, $guessTest1 46%, $guessTest1 49%, transparent 50%, transparent),
+  radial-gradient(circle at 0    50%, $guessTest1 5%, $guessTest2 6%, $guessTest2 15%, $guessTest1 16%, $guessTest1 20%, $guessTest2 21%, $guessTest2 30%, $guessTest1 31%, $guessTest1 35%, $guessTest2 36%, $guessTest2 45%, $guessTest1 46%, $guessTest1 49%, transparent 50%, transparent);
+  background-size:100px 50px;
+
   &.current .wrapper {
     animation: genericFadeInAnimation 0.5s $cubic 0.1s 1 forwards;
+  }
+
+  .wrapper {
+    background-color: $guess;
+    padding: 50px;
+  }
+
+  .guess-header {
+    @include flexbox(row, center, center);
+
+    .best-win-streak,
+    .current-win-streak {
+      flex: 1;
+      @include flexbox(column, center, center);
+
+      .label,
+      .value {
+        margin-bottom: 10px;
+      }
+
+      .value {
+        height: 75px;
+        width: 75px;
+        background: $guessDark;
+        @include flexbox(row, center, center);
+        font-size: 48px;
+      }
+    }
+
+    h2 {
+      flex: 2;
+    }
+  }
+
+  .guess-board {
+    position: relative;
+    border: 10px solid white;
+    height: 70%;
+    padding: 75px 25px;
+
+    .category {
+      height: 100px;
+      width: 100%;
+      border: 5px solid white;
+      position: relative;
+
+      .category-title {
+        text-align: center;
+        font-weight: lighter;
+        position: absolute;
+        top: -12.5px;
+        left: 25px;
+        width: 125px;
+        margin: 0;
+        background-color: $guess;
+      }
+
+      .category-text {
+        width: 100%;
+        height: 100%;
+        @include flexbox(row, center, center);
+        text-transform: uppercase;
+        font-size: 64px;
+
+        &.chosen {
+          animation: pulse 0.5s $cubic 0.1s 1;
+        }
+      }
+    }
+
+    .guesses {
+      margin-top: 50px;
+      @include flexbox(row, space-around, center);
+
+      .guess {
+        &.correct {
+          .guess-circle {
+            .guess-correct {
+              display: block;
+            }
+          }
+        }
+
+        &.incorrect {
+          .guess-circle {
+            .guess-incorrect {
+              display: block;
+            }
+          }
+        }
+
+        .guess-circle {
+          position: relative;
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          background-color: $guessDark;
+          @include flexbox(row, center, center);
+
+          .guess-correct {
+            display: none;
+            font-size: 120px;
+            color: $success;
+          }
+
+          .guess-incorrect {
+            display: none;
+            font-size: 120px;
+            color: $failure;
+          }
+        }
+      }
+    }
+
+    .clues {
+      margin-top: 50px;
+      height: 100px;
+      width: 100%;
+      border: 5px solid white;
+      position: relative;
+
+      .clue-title {
+        text-align: center;
+        font-weight: lighter;
+        position: absolute;
+        top: -12.5px;
+        left: 25px;
+        width: 90px;
+        margin: 0;
+        background-color: $guess;
+      }
+
+      .clue-text {
+        width: 100%;
+        height: 100%;
+        @include flexbox(column, center, center);
+        font-size: 22px;
+      }
+    }
+
+    .guess-form {
+      margin-top: 50px;
+      @include flexbox(row, center, center);
+
+      &.hide {
+        display: none;
+      }
+
+      input, button {
+        height: 100px;
+        border: 0;
+        color: white;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      input {
+        flex: 4;
+        text-align: center;
+        background-color: $guessDark;
+        font-size: 40px;
+      }
+
+      button {
+        flex: 1;
+        background-color: $intro;
+        font-size: 54px;
+        cursor: pointer;
+      }
+    }
+
+    .win,
+    .lose {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      @include flexbox(column, center, center);
+
+      &.hide {
+        display: none;
+      }
+
+      h3 {
+        font-size: 64px;
+      }
+    }
+
+    .win {
+      background-color: $success;
+    }
+
+    .lose {
+      background-color: $failure;
+    }
   }
 }
