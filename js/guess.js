@@ -1,4 +1,4 @@
-const categories = ['fruits', 'vegetables'];
+const categories = ['fruits', 'vegetables', 'pizza-toppings'];
 let entries = [];
 let answerObj = {};
 let allClues;
@@ -162,6 +162,7 @@ function handleGuessInput(e) {
 function resetGuess() {
   gameOn = false;
   bestWinStreak = localStorage.getItem('bestWinStreak') || 0;
+  category = getRandomArrayEntry(categories);
   dom.currentWinStreak.textContent = currentWinStreak;
   dom.bestWinStreak.textContent = bestWinStreak;
   dom.clues.innerHTML = '';
@@ -171,15 +172,28 @@ function resetGuess() {
   dom.winScreen.classList.add('hide');
   dom.loseScreen.classList.add('hide');
   dom.textInput.focus();
+
+  let getClueData = fetch(`./json/clues.json`)
+    .then(response => response.json())
+    .then(json => {
+      return json.entries;
+    });
+
+  let getCategoryData = fetch(`./json/${category}.json`)
+    .then(response => response.json())
+    .then(json => {
+      return json.entries;
+    });
+
+
   Promise.all([getCategoryData, getClueData]).then((response) => {
     dom.inputForm.reset();
     entries = response[0];
     answerObj.trueAnswer = entries[Math.floor(Math.random()*entries.length)];
-    answerObj.strippedAnswer = answerObj.trueAnswer.replace(/\s/g, '');
+    answerObj.strippedAnswer = answerObj.trueAnswer.replace(/\s/g, '').toLowerCase();
     allClues = response[1];
     buildClues(allClues, answerObj.strippedAnswer);
     showCategory(category);
-    console.log(answerObj.strippedAnswer);
   });
 }
 
@@ -191,17 +205,7 @@ function checkForReset(e) {
 
 // API
 
-let getClueData = fetch(`./json/clues.json`)
-  .then(response => response.json())
-  .then(json => {
-    return json.entries;
-  });
 
-let getCategoryData = fetch(`./json/${category}.json`)
-  .then(response => response.json())
-  .then(json => {
-    return json.entries;
-  });
 
 dom.inputForm.addEventListener('submit', handleGuessInput);
 document.addEventListener('guess', resetGuess);
